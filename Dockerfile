@@ -9,4 +9,5 @@ RUN apt-get update
 RUN apt-get -y install cron wget
 
 # Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
+# include CRON* environment variables
+CMD printenv > /etc/environment && cron && tail -f /var/log/cron.log
